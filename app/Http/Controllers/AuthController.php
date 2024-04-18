@@ -54,6 +54,12 @@ class AuthController extends Controller
         auth()->user->update([
             'token' => $uuid
         ]);
+
+        return response()->json([
+            'message' => 'Login success',
+            'role' => auth()->user->role,
+            'accessToken' => $uuid
+        ]);
     }
 
     public function logout(Request $request) {
@@ -63,9 +69,9 @@ class AuthController extends Controller
             'token' =>null
         ]);
 
-        // auth()->user->update([
-        //     'token' => null
-        // ]);
+        return response()->json([
+            'message' => 'Logout success'
+        ]);
 
     }
 }
